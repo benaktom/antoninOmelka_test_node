@@ -1,0 +1,123 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Test NodeJS - OpenAPI 3.0",
+        "description": "This is documentation for Test NodeJS Server endpoints.",
+        "version": "1.0.0"
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    },
+    "tags": [
+        {
+            "name": "alive",
+            "description": "Checking if server is online"
+        },
+        {
+            "name": "card",
+            "description": "State and validity of the card"
+        }
+    ],
+    "paths": {
+        "/alive": {
+            "get": {
+                "tags": [
+                    "alive"
+                ],
+                "summary": "Checking if server is online",
+                "description": "Checking if server is online",
+                "operationId": "alive",
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Alive"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/card/{cardId}": {
+            "get": {
+                "tags": [
+                    "card"
+                ],
+                "summary": "Return state and validity of a card",
+                "description": "Return state and validity of a card by ID",
+                "operationId": "card",
+                "parameters": [
+                    {
+                        "name": "cardId",
+                        "in": "path",
+                        "description": "ID of card to return",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Card"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Card not found"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Alive": {
+                "type": "string"
+            },
+            "Card": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "type": "string",
+                        "description": "State of Card",
+                        "example": "Aktivní v držení klienta"
+                    },
+                    "validity": {
+                        "type": "string",
+                        "description": "Validity End Date",
+                        "example": "1.1.2021"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        }
+    }
+}
