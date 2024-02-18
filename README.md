@@ -13,7 +13,7 @@ Requirements for runnig the application are Node.js (tested with v20.11.0) and N
 npm install
 ```
 
-2. Go to src folder and install dependencies
+2. Go to `/src` folder and install additonal dependencies
 
 ```
 cd ./src
@@ -22,16 +22,15 @@ npm install
 
 ### **Start Application**
 
-Server is running on port 3000. For starting of the application go to /src folder and run
+For starting of the application go to `/src` folder following command:
 ```
-cd ./src
-npm run start
+npm start
 ```
+View the website at: http://localhost:3000
 
 ### **Run Tests**
 
-To run tests go to /src folder and run
+To run tests go to `/src` folder and run following command:
 ```
-cd ./src
 npm test
 ```
