@@ -34,3 +34,8 @@ To run tests go to `/src` folder and run following command:
 ```
 npm test
 ```
+
+## code review
+- proč 2x package.json?
+- instalace hlásí `8 vulnerabilities (1 low, 4 high, 3 critical)`
+- bylo by dobrý mít zde odkaz na api dokumentaci a heslo pro přístup k card endpointu

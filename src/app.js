@@ -15,6 +15,7 @@ const cardRouter = require('./routes/card');
 const app = express();
 
 // view engine setup
+// [CR] na co je tu view engine?
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// [CR] k čemu slouží tato routa?
 app.use('/', indexRouter);
 
 // alive endpoint
@@ -38,6 +40,7 @@ app.use('/card/:cardId', basicAuth({
 	},
 	challenge: true
 }), (req, res, next) => {
+	// [CR] co když cardId není číslo?
 	req.config = { cardId: req.params.cardId };
 	next();
 }, cardRouter.router);
@@ -53,8 +56,11 @@ app.use(function(err, req, res) {
 	res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+	// [CR] vhodné zalogovat chybu2, např. winston
+
 	// render the error page
 	res.status(err.status || 500);
+	// [CR] proč se chyby vrací jako html?
 	res.render('error');
 });
 
